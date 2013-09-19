@@ -1,4 +1,8 @@
 SampleApp::Application.routes.draw do
+  get "foobars/baz"
+
+  get "foobars/number"
+
   get "static_pages/home"
 
   get "static_pages/help"
