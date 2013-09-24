@@ -1,14 +1,23 @@
 SampleApp::Application.routes.draw do
-  get "foobars/baz"
+root to: 'static_pages#home'
 
-  get "foobars/number"
+  match '/baz', :to =>'static_pages#baz'
+  match '/number', :to =>'static_pages#number'
+  match '/home', :to =>'static_pages#home'
+  match '/help', :to =>'static_pages#help'
+  match '/about', :to =>'static_pages#about'
+  match '/contact', :to =>'static_pages#contact'
+  match '/signup', :to =>'users#new'
+ 
 
-  get "static_pages/home"
+ # get "foobars/number"
 
-  get "static_pages/help"
+  #get "static_pages/home"
 
-  get "static_pages/about"
-  get "static_pages/contact"
+  #get "static_pages/help"  this is working but replaced by above one ....
+
+  #get "static_pages/about"
+  #get "static_pages/contact"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -48,7 +57,7 @@ SampleApp::Application.routes.draw do
   #     resources :sales do
   #       get 'recent', :on => :collection
   #     end
-  #   end
+  #   endisit root_isit root_pathpath
 
   # Sample resource route within a namespace:
   #   namespace :admin do
