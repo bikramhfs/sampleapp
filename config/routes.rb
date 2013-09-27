@@ -1,4 +1,7 @@
 SampleApp::Application.routes.draw do
+  resources :microposts
+
+
 root to: 'static_pages#home'
 
   match '/baz', :to =>'static_pages#baz'

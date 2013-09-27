@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'bootstrap-sass','2.1'
 
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
@@ -12,6 +13,7 @@ gem 'guard-rspec','1.2.1'
 gem 'guard-spork', '1.2.0'
 gem 'childprocess', '0.3.6'
 gem 'spork', '0.9.2'
+gem 'annotate', '2.5.0'
 
 end
 # Gems used only for assets and not required
@@ -41,7 +43,7 @@ group :test do
 
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
