@@ -1,6 +1,6 @@
 SampleApp::Application.routes.draw do
   resources :microposts
-
+resources :users
 
 root to: 'static_pages#home'
 
