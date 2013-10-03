@@ -191,3 +191,7 @@ input {
   @extend .control-group;
   @extend .error;
 }
+
+.dropdown-menu{
+  display:inline !important;
+}
