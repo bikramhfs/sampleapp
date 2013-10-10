@@ -36,6 +36,12 @@ describe "AuthenticationPages" do
 				before { click_link "Home" }
 				it { should_not have_selector('div.alert.alert-error') }
 			end
+
+			describe "with non Signed in user" do
+			before { click_button "Sign in"}
+			it { should_not have_link('Profile') }
+			it { should_not have_link('Settings') }
+			end
 		end
 	end
 	describe "authorization" do
@@ -78,7 +84,16 @@ describe "AuthenticationPages" do
 					specify { response.should redirect_to(signin_path) }
 				end
 			end
-
+			describe "In the micropost controller" do 
+				describe "submitting to the create action" do 
+					before { post microposts_path }
+					specify { response.should redirect_to(signin_path) }
+				end
+				describe "submitting to the destroy action" do 
+					before { delete micropost_path(FactoryGirl.create(:micropost)) }
+					specify { response.should redirect_to(signin_path) }
+				end
+			end
 			describe "when attempting to visit a protected page" do
 				before do
 					visit edit_user_path(user)
@@ -88,13 +103,26 @@ describe "AuthenticationPages" do
 				end
 
 				describe "after signing in" do
-
 					it "should render the desired protected page" do
 						page.should have_selector('title', text: 'Edit user')
+					end
+
+					describe "when signing in again" do 
+						before do
+							delete signout_path
+							visit signin_path
+							fill_in "Email",    with: user.email
+							fill_in "Password", with: user.password
+							click_button "Sign in"
+						end
+						it "should render the default (Profile) page" do 
+							page.should have_selector('title', text: user.name)
+						end
 					end
 				end
 			end
 		end
+
 		describe "as non-admin user" do
 			let(:user) { FactoryGirl.create(:user) }
 			let(:non_admin) { FactoryGirl.create(:user) }

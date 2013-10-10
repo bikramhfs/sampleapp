@@ -2,6 +2,7 @@ SampleApp::Application.routes.draw do
   resources :microposts
 resources :users
 resources :sessions, only: [:new, :create, :destroy]
+resources :microposts, only: [:create, :destroy]
 root to: 'static_pages#home'
   match '/baz', :to =>'static_pages#baz'
   match '/number', :to =>'static_pages#number'
