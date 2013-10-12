@@ -36,3 +36,15 @@ describe "Micropost Pages" do
     end
   end
 end
+describe "visit another user profile"do
+subject { page }
+let(:user) { FactoryGirl.create(:user) }
+let(:user2) { FactoryGirl.create(:user, email: "wrong@example.com") }
+
+before do 
+	sign_in user
+	visit users_path(user2) 
+end
+it { should_not have_link('delete') }
+
+end
